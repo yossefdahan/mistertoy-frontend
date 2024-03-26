@@ -24,7 +24,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                 <input type="text"
                     id="toy"
                     name="txt"
-                    placeholder="By toy"
+                    placeholder="By name"
                     value={filterByToEdit.txt}
                     onChange={handleChange}
                 />

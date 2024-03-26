@@ -4,25 +4,35 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { toyService } from '../services/toy.service.js'
-import { loadToys, removeToy, saveToy, setFilterBy } from '../store/actions/toy.action'
+import { loadToys, removeToy, saveToy, setFilterBy, setSortBy } from '../store/actions/toy.action'
 import { ToyList } from '../cmps/ToyList.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { ToySort } from '../cmps/ToySort.jsx'
+
 export function ToyIndex() {
     const dispatch = useDispatch()
+    // const [sortBy, setSortBy] = useState({ type: '', dir: 1 })
     const toys = useSelector(storeState => storeState.toyModule.toys)
     const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
     const isLoading = useSelector(storeState => storeState.toyModule.isLoading)
+    const sortBy = useSelector(storeState => storeState.toyModule.sortBy)
+
 
     useEffect(() => {
         loadToys()
             .catch(err => {
                 showErrorMsg('Cannot load toys!')
             })
-    }, [filterBy])
+    }, [filterBy, sortBy])
 
     function onSetFilter(filterBy) {
         setFilterBy(filterBy)
+    }
+
+    function onSetSort(sortBy) {
+        setSortBy(sortBy)
+
     }
 
     function onRemoveToy(toyId) {
@@ -36,7 +46,8 @@ export function ToyIndex() {
     }
 
     function onAddToy() {
-        const toyToSave = toyService.getEmptyToy()
+        const toyToSave = toyService.getRandomToy()
+
         saveToy(toyToSave)
             .then((savedToy) => {
                 showSuccessMsg(`Toy added (id: ${savedToy._id})`)
@@ -60,7 +71,6 @@ export function ToyIndex() {
     }
 
 
-    if (!toys) return <div>Loading..</div>
 
     return (
         <div>
@@ -69,6 +79,8 @@ export function ToyIndex() {
                 <Link to="/toy/edit">Add toy</Link>
                 <button className='add-btn' onClick={onAddToy}>Add random toy 🪀</button>
                 <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+                <ToySort onSetSort={onSetSort} sortBy={sortBy} />
+
                 {!isLoading
                     ? <ToyList
                         toys={toys}
@@ -77,7 +89,7 @@ export function ToyIndex() {
                     />
                     : <div>Loading...</div>
                 }
-                <hr />
+                {/* <hr /> */}
             </main>
         </div>
     )

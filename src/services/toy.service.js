@@ -1,4 +1,5 @@
 import { storageService } from './async-storage.service.js'
+import { utilService } from './util.service.js'
 
 const STORAGE_KEY = 'toyDB'
 
@@ -8,15 +9,29 @@ export const toyService = {
     save,
     remove,
     getEmptyToy,
-    getDefaultFilter
+    getDefaultFilter,
+    getRandomToy,
+    getDefaultSort
 }
 
-function query(filterBy = {}) {
+function query(filterBy = {}, sortBy = {}) {
+
     return storageService.query(STORAGE_KEY)
         .then(toys => {
+            let toysToShow = toys
             if (!filterBy.txt) filterBy.txt = ''
+            if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
             const regExp = new RegExp(filterBy.txt, 'i')
-            return toys.filter(toy => regExp.test(toy.name) && toy.price <= filterBy.maxPrice)
+            toysToShow = toysToShow.filter(toy => regExp.test(toy.name) && toy.price <= filterBy.maxPrice)
+
+            if (sortBy.type === 'createdAt') {
+                toysToShow.sort((b1, b2) => (+sortBy.dir) * (b1.createdAt - b2.createdAt))
+            } else if (sortBy.type === 'price') {
+                toysToShow.sort((b1, b2) => (+sortBy.dir) * (b1.price - b2.price))
+            } else if (sortBy.type === 'name') {
+                toysToShow.sort((a, b) => sortBy.dir * a.name.localeCompare(b.name))
+            }
+            return toysToShow
         })
 }
 
@@ -41,10 +56,24 @@ function getDefaultFilter() {
     return { txt: '', maxPrice: '' }
 }
 
+function getDefaultSort() {
+    return { type: '', dir: 1 }
+}
+
 function getEmptyToy() {
     return {
         name: '',
         price: 0,
+        labels: [],
+        createdAt: Date.now(),
+        inStock: true,
+    }
+}
+
+function getRandomToy() {
+    return {
+        name: utilService.makeLorem(2),
+        price: utilService.getRandomIntInclusive(1, 250),
         labels: [],
         createdAt: Date.now(),
         inStock: true,
