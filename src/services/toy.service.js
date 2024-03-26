@@ -20,9 +20,18 @@ function query(filterBy = {}, sortBy = {}) {
         .then(toys => {
             let toysToShow = toys
             if (!filterBy.txt) filterBy.txt = ''
-            if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
             const regExp = new RegExp(filterBy.txt, 'i')
-            toysToShow = toysToShow.filter(toy => regExp.test(toy.name) && toy.price <= filterBy.maxPrice)
+
+            toysToShow = toysToShow.filter(toy => {
+                const nameMatches = regExp.test(toy.name)
+                let inStockMatches = true
+                if (filterBy.inStock === 'true') {
+                    inStockMatches = toy.inStock === true
+                } else if (filterBy.inStock === 'false') {
+                    inStockMatches = toy.inStock === false
+                }
+                return nameMatches && inStockMatches
+            })
 
             if (sortBy.type === 'createdAt') {
                 toysToShow.sort((b1, b2) => (+sortBy.dir) * (b1.createdAt - b2.createdAt))
@@ -53,7 +62,7 @@ function save(toy) {
 }
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: '' }
+    return { txt: '', inStock: '' }
 }
 
 function getDefaultSort() {
@@ -66,7 +75,7 @@ function getEmptyToy() {
         price: 0,
         labels: [],
         createdAt: Date.now(),
-        inStock: true,
+        inStock: false,
     }
 }
 
@@ -74,10 +83,12 @@ function getRandomToy() {
     return {
         name: utilService.makeLorem(2),
         price: utilService.getRandomIntInclusive(1, 250),
-        labels: [],
+        labels: utilService.getRandomLabels(3),
         createdAt: Date.now(),
-        inStock: true,
+        inStock: Math.random() < 0.5,
     }
 }
 
+// const labels = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
 // storageService.post(STORAGE_KEY, { _id: 't101', name: 'Talking Doll', price: 123, labels: ['Doll', 'Battery Powered', 'Baby'], createdAt: 1631031801011, inStock: true, }).then(x => console.log(x))
+

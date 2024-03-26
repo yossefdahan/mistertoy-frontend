@@ -10,6 +10,7 @@ export function ToyEdit() {
     const navigate = useNavigate()
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
     const { toyId } = useParams()
+    const labelsOptions = ['On wheels', 'Box game', 'Art', 'Baby', 'Doll', 'Puzzle', 'Outdoor', 'Battery Powered']
 
     useEffect(() => {
         if (toyId) loadToy()
@@ -25,9 +26,20 @@ export function ToyEdit() {
     }
 
     function handleChange({ target }) {
-        let { value, type, name: field } = target
-        value = type === 'number' ? +value : value
-        setToyToEdit((prevToy) => ({ ...prevToy, [field]: value }))
+        let { value, type, name, checked } = target
+        if (type === 'checkbox') {
+            if (name === 'inStock') {
+                setToyToEdit(prevToy => ({ ...prevToy, [name]: checked }))
+            } else {
+                setToyToEdit(prevToy => {
+                    const labelsUpdate = checked ? [...prevToy.labels, value] : prevToy.labels.filter(label => label !== value)
+                    return { ...prevToy, labels: labelsUpdate }
+                })
+            }
+        } else {
+            const updatedValue = type === 'number' ? +value : value
+            setToyToEdit(prevToy => ({ ...prevToy, [name]: updatedValue }))
+        }
     }
 
     function onSaveToy(ev) {
@@ -65,7 +77,28 @@ export function ToyEdit() {
                     value={toyToEdit.price}
                     onChange={handleChange}
                 />
-
+                <div>
+                    {labelsOptions.map(label => (
+                        <label key={label}>
+                            <input
+                                type="checkbox"
+                                name="labels"
+                                value={label}
+                                checked={toyToEdit.labels.includes(label)}
+                                onChange={handleChange}
+                            />
+                            {label}
+                        </label>
+                    ))}
+                </div>
+                <label htmlFor="inStock">In Stock: </label>
+                <input
+                    type="checkbox"
+                    name="inStock"
+                    id="inStock"
+                    checked={toyToEdit.inStock}
+                    onChange={handleChange}
+                />
                 <div>
                     <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
                     <Link to="/toy">Cancel</Link>
