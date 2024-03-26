@@ -16,19 +16,20 @@ function query(filterBy = {}) {
         .then(toys => {
             if (!filterBy.txt) filterBy.txt = ''
             const regExp = new RegExp(filterBy.txt, 'i')
-            return toys.filter(toy => regExp.test(toy.name))
+            return toys.filter(toy => regExp.test(toy.name) && toy.price <= filterBy.maxPrice)
         })
 }
 
 function getById(toyId) {
-    return storageService.get(STORAGE_KEY + toyId)
+    return storageService.get(STORAGE_KEY, toyId)
 }
 
 function remove(toyId) {
-    return storageService.delete(STORAGE_KEY + toyId)
+    return storageService.remove(STORAGE_KEY, toyId)
 }
 
 function save(toy) {
+
     if (toy._id) {
         return storageService.put(STORAGE_KEY, toy)
     } else {
@@ -37,7 +38,7 @@ function save(toy) {
 }
 
 function getDefaultFilter() {
-    return { txt: '' }
+    return { txt: '', maxPrice: '' }
 }
 
 function getEmptyToy() {
