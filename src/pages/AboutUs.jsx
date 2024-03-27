@@ -1,5 +1,9 @@
+import { GoogleMap } from "../cmps/GoogleMap";
 
 
 export function AboutUs() {
-    return <h1>About</h1>
+    return <div>
+        <GoogleMap />
+    </div>
 }
+
