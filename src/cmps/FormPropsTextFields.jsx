@@ -15,7 +15,7 @@ export function FormPropsTextFields({ value, onChange }) {
         >
             <TextField
                 id="outlined-search"
-                label="Search field"
+                label="Search"
                 type="search"
 
                 value={value}
