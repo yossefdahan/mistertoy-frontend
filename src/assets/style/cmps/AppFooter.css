@@ -1,5 +1,14 @@
 .app-footer {
-    font-weight: 700;
-    color: var;
-    font-size: 1.25em;
+    background-color: var(--clr1);
+    color: var(--clr1bg);
+    padding-block: 1em;
+    text-align: center;
+    position: static;
+    bottom: 0;
+}
+
+.app-footer .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

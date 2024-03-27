@@ -36,7 +36,7 @@ export function MyChart({ toys }) {
             // if (toy.inStock) {
             toy.labels.forEach(label => {
                 acc[label] = (acc[label] || 0) + 1
-                console.log(label)
+
             })
             // }
             return acc
@@ -44,7 +44,7 @@ export function MyChart({ toys }) {
 
         const totalInStock = Object.values(labelCounts).reduce((sum, count) => sum + count, 0)
         const percentages = Object.values(labelCounts).map(count => (count / totalInStock) * 100)
-        console.log(labelCounts)
+
         setChartData({
             labels: Object.keys(labelCounts),
             datasets: [{

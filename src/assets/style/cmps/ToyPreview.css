@@ -16,7 +16,7 @@
 }
 
 .toy-container {
-    background-color: antiquewhite;
+    background-color: var(--clr1);
     border-radius: 15px;
     padding: 1em;
 }

@@ -1,5 +1,9 @@
 
 
 export function HomePage() {
-    return <h1>Home</h1>
+
+    return <div className="home-container">
+        <img className="bck-img" src="img/bck2.webp" alt="bck-ground" />
+    </div>
+
 }

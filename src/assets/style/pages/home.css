@@ -1,0 +1,17 @@
+.bck-img {
+    background-image: url('/img/bck2.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* height: 50vh; */
+    width: 40%;
+
+}
+
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 80vh;
+    margin: 0 auto
+}
