@@ -1,47 +1,53 @@
 import { useRef, useState } from "react";
 import { useEffectUpdate } from "../customHooks/useEffectUpdate.js";
 import { utilService } from "../services/util.service.js";
+import { toyService } from "../services/toy.service.js";
+import { MultiSelect } from "./MultiSelect.jsx";
+
+import { FormPropsTextFields } from "./FormPropsTextFields.jsx";
+import { InStockFilter } from "./InStockFilter.jsx";
+
 
 export function ToyFilter({ filterBy, onSetFilter }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
     onSetFilter = useRef(utilService.debounce(onSetFilter, 300))
+    const labels = toyService.getLabels()
 
     useEffectUpdate(() => {
         onSetFilter.current(filterByToEdit)
     }, [filterByToEdit])
 
     function handleChange({ target }) {
-        let { value, name: field, type } = target
-        // value = type === 'number' ? +value : value
-        // if (type === 'checkbox') value = target.checked
-        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
+        const { value, name, type } = target;
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [name]: type === 'checkbox' ? target.checked : value }))
+    }
+
+    function handleLabelSelect(selectedLabels) {
+        setFilterByToEdit(prevFilter => ({
+            ...prevFilter,
+            labels: selectedLabels
+        }))
+    }
+
+    function handleInStockChange(value) {
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, inStock: value }))
     }
 
     return (
-        <section className="toy-filter full main-layout">
-            <h2>Toys Filter</h2>
-            <form >
-                <label htmlFor="toy">Toy:</label>
-                <input type="text"
-                    id="toy"
-                    name="txt"
-                    placeholder="By name"
-                    value={filterByToEdit.txt}
-                    onChange={handleChange}
-                />
-
-
-                <label htmlFor="inStock">In stock:</label>
-                <select id="inStock"
-                    name="inStock"
-                    value={filterByToEdit.inStock}
-                    onChange={handleChange}>
-                    <option value="all">All</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-            </form>
-
+        <section className="toy-filter full main-layout flex">
+            <FormPropsTextFields
+                value={filterByToEdit.txt}
+                onChange={(e) => handleChange({ target: { name: 'txt', value: e.target.value } })}
+            />
+            <MultiSelect
+                selectedLabels={filterByToEdit.labels}
+                onChange={handleLabelSelect}
+                labels={toyService.getLabels()}
+            />
+            <InStockFilter
+                inStock={filterByToEdit.inStock}
+                onInStockChange={handleInStockChange}
+            />
         </section>
     )
 }

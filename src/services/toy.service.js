@@ -1,7 +1,8 @@
-import { storageService } from './async-storage.service.js'
+// import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
+import { httpService } from './http.service'
 
-const STORAGE_KEY = 'toyDB'
+// const STORAGE_KEY = 'toyDB'
 
 export const toyService = {
     query,
@@ -11,58 +12,46 @@ export const toyService = {
     getEmptyToy,
     getDefaultFilter,
     getRandomToy,
-    getDefaultSort
+    getDefaultSort,
+    getLabels
 }
 
-function query(filterBy = {}, sortBy = {}) {
+const labels = ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Battery Powered"]
 
-    return storageService.query(STORAGE_KEY)
-        .then(toys => {
-            let toysToShow = toys
-            if (!filterBy.txt) filterBy.txt = ''
-            const regExp = new RegExp(filterBy.txt, 'i')
 
-            toysToShow = toysToShow.filter(toy => {
-                const nameMatches = regExp.test(toy.name)
-                let inStockMatches = true
-                if (filterBy.inStock === 'true') {
-                    inStockMatches = toy.inStock === true
-                } else if (filterBy.inStock === 'false') {
-                    inStockMatches = toy.inStock === false
-                }
-                return nameMatches && inStockMatches
-            })
+function getLabels() {
+    return [...labels]
+}
 
-            if (sortBy.type === 'createdAt') {
-                toysToShow.sort((b1, b2) => (+sortBy.dir) * (b1.createdAt - b2.createdAt))
-            } else if (sortBy.type === 'price') {
-                toysToShow.sort((b1, b2) => (+sortBy.dir) * (b1.price - b2.price))
-            } else if (sortBy.type === 'name') {
-                toysToShow.sort((a, b) => sortBy.dir * a.name.localeCompare(b.name))
-            }
-            return toysToShow
-        })
+function query(filterBy, sortBy) {
+
+    return httpService.get('toy', { params: { filterBy, sortBy } })
+
 }
 
 function getById(toyId) {
-    return storageService.get(STORAGE_KEY, toyId)
+    return httpService.get(`toy/${toyId}`)
 }
 
 function remove(toyId) {
-    return storageService.remove(STORAGE_KEY, toyId)
+    return httpService.delete(`toy/${toyId}`)
 }
 
 function save(toy) {
 
     if (toy._id) {
-        return storageService.put(STORAGE_KEY, toy)
+        return httpService.put(`toy/${toy._id}`, toy)
     } else {
-        return storageService.post(STORAGE_KEY, toy)
+        return httpService.post('toy', toy)
     }
 }
 
 function getDefaultFilter() {
-    return { txt: '', inStock: '' }
+    return {
+        txt: '',
+        inStock: '',
+        labels: [],
+    }
 }
 
 function getDefaultSort() {

@@ -21,7 +21,7 @@ export function ToyEdit() {
             .then(toy => setToyToEdit(toy))
             .catch(err => {
                 console.log('Had issues in toy edit', err)
-                navigate('/toy')
+
             })
     }
 
