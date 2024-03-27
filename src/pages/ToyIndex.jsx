@@ -9,6 +9,7 @@ import { ToyList } from '../cmps/ToyList.jsx'
 import { ToyFilter } from '../cmps/ToyFilter.jsx'
 import { useEffect, useState } from 'react'
 import { ToySort } from '../cmps/ToySort.jsx'
+import { MyChart } from '../cmps/MyChart.jsx'
 
 export function ToyIndex() {
     const dispatch = useDispatch()
@@ -74,13 +75,22 @@ export function ToyIndex() {
 
     return (
         <div>
-            <h3>Toys App</h3>
-            <main>
-                <Link to="/toy/edit">Add toy</Link>
-                <button className='add-btn' onClick={onAddToy}>Add random toy 🪀</button>
-                <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-                <ToySort onSetSort={onSetSort} sortBy={sortBy} />
 
+            <main className='main-container flex'>
+                <div className='filter-sort-edit-container'>
+                    <div className='add-container full main-layout flex'>
+                        <Link className='add-link' to="/toy/edit">Add toy</Link>
+                        <button className='add-btn' onClick={onAddToy}>Add random toy </button>
+                    </div>
+
+                    <div className='filter-sort-container flex '>
+                        <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+                        <ToySort onSetSort={onSetSort} sortBy={sortBy} />
+                    </div>
+                </div>
+                <div className='chart-container'>
+                    <MyChart toys={toys} />
+                </div>
                 {!isLoading
                     ? <ToyList
                         toys={toys}
@@ -89,7 +99,7 @@ export function ToyIndex() {
                     />
                     : <div>Loading...</div>
                 }
-                {/* <hr /> */}
+
             </main>
         </div>
     )

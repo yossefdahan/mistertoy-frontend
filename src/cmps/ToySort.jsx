@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { SortBySelect } from "./SortBySelect"
 
 
 export function ToySort({ onSetSort, sortBy }) {
@@ -7,6 +8,13 @@ export function ToySort({ onSetSort, sortBy }) {
     useEffect(() => {
         onSetSort(sortByToEdit)
     }, [sortByToEdit])
+
+    const handleSortByChange = (value) => {
+        setSortByToEdit(prevSort => ({
+            ...prevSort,
+            type: value,
+        }));
+    }
 
     function handleChange({ target }) {
         const field = target.name
@@ -25,23 +33,19 @@ export function ToySort({ onSetSort, sortBy }) {
     }
 
     return (
-        <form className="toy-sort">
-            <select className="sort-type"
-                name="type"
-                value={sortByToEdit.type}
-                onChange={handleChange}>
+        <form className="toy-sort flex">
+            <SortBySelect
+                sortBy={sortByToEdit.type}
+                onSetSortBy={handleSortByChange}
+            />
 
-                <option value={''}>----</option>
-                <option value="name">Name</option>
-                <option value="createdAt">Date</option>
-                <option value="price">Price</option>
-            </select>
-            <label>
+            <label className="desc-label">
+                Descending:
                 <input type="checkbox"
                     name="dir"
                     value={!sortByToEdit.dir === -1}
                     onChange={handleChange} />
-                Descending
+
             </label>
         </form>
     )

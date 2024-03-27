@@ -1,8 +1,9 @@
 .toy-preview {
-    text-align: center;
-    padding: 0.3em;
     display: flex;
     flex-direction: column;
+    padding: 0.3em;
+    text-align: center;
+    position: relative;
 }
 
 .toy-preview h4 {
@@ -12,4 +13,15 @@
 
 .toy-preview img {
     max-width: 100px;
+}
+
+.toy-container {
+    background-color: antiquewhite;
+    border-radius: 15px;
+    padding: 1em;
+}
+
+.toy-container img {
+    height: 150px;
+    max-width: 100%;
 }

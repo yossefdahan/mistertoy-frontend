@@ -34,7 +34,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     }
 
     return (
-        <section className="toy-filter full main-layout flex">
+        <section className="toy-filter full flex">
             <FormPropsTextFields
                 value={filterByToEdit.txt}
                 onChange={(e) => handleChange({ target: { name: 'txt', value: e.target.value } })}

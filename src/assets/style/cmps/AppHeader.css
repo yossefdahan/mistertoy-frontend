@@ -1,16 +1,50 @@
+/* Assuming this is in style.css */
 .app-header {
     background-color: var(--clr1);
     color: var(--clr1bg);
-    padding-block: 1em;
+    padding-block: 0.2em;
+    text-align: center;
+}
+
+.app-header .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .app-nav {
     display: flex;
     gap: 15px;
+    font-size: 1em;
+}
+
+.app-nav a {
+    color: var(--clr1bg);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.app-nav a:hover {
+    color: #000;
+
+}
+
+.logo-img {
+    width: 100px;
+    border-radius: 50%;
 }
 
 @media(max-width: 720px) {
     .app-header {
-        color: var(--clr2bg);
+        /* color: var(--clr2bg); */
+    }
+
+    .app-header .header-container {
+        /* flex-direction: column; */
+    }
+
+    .app-nav {
+        /* flex-direction: column; */
     }
 }
