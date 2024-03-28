@@ -12,10 +12,11 @@ export function AppFooter() {
                 <nav className="footer-nav">
                     <Link to="/">Home</Link>
                     <Link to="/about">About</Link>
-                    <Link to="/contact">Contact</Link>
+                    {/* <Link to="/contact">Contact</Link> */}
                 </nav>
-                <p>Creator: Yossef Dahan</p>
+                <h3>Yossef 🧸 Dahan</h3>
+
             </div>
-        </footer>
+        </footer >
     );
 }

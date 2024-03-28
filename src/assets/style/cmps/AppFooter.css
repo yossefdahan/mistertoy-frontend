@@ -1,14 +1,31 @@
 .app-footer {
     background-color: var(--clr1);
-    color: var(--clr1bg);
+    color: white;
     padding-block: 1em;
     text-align: center;
     position: static;
     bottom: 0;
+    margin-top: 1em;
+    font-family: "Rubik Doodle Shadow";
+}
+
+.app-footer h3 {
+    font-family: "Rubik Doodle Shadow";
 }
 
 .app-footer .footer-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    flex-direction: row-reverse;
+
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    font-size: 1.5em;
 }

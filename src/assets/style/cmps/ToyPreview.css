@@ -16,12 +16,51 @@
 }
 
 .toy-container {
-    background-color: var(--clr1);
+    /* background-color: var(--clr1); */
+    border: 1px solid var(--clr1);
     border-radius: 15px;
     padding: 1em;
+    min-width: 200px;
 }
 
 .toy-container img {
     height: 150px;
     max-width: 100%;
+}
+
+.edit-toy-btn {
+    padding: 5px;
+    background-color: white;
+    border: 0.1px solid black;
+    border-radius: 8px;
+    margin-right: 1em;
+    opacity: 0;
+
+}
+
+.details-btn {
+    padding: 5px;
+    background-color: white;
+    border: 0.1px solid black;
+    border-radius: 8px;
+    opacity: 0;
+}
+
+
+.edit-toy-btn:hover {
+    background-color: var(--clr2);
+
+}
+
+.details-btn:hover {
+    background-color: var(--clr2);
+
+}
+
+.toy-container:hover .details-btn {
+    opacity: 1;
+}
+
+.toy-container:hover .edit-toy-btn {
+    opacity: 1;
 }

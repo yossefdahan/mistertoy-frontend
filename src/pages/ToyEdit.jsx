@@ -91,14 +91,16 @@ export function ToyEdit() {
                         </label>
                     ))}
                 </div>
-                <label htmlFor="inStock">In Stock: </label>
-                <input
-                    type="checkbox"
-                    name="inStock"
-                    id="inStock"
-                    checked={toyToEdit.inStock}
-                    onChange={handleChange}
-                />
+                <div className="checkbox-container">
+                    <label htmlFor="inStock">In Stock: </label>
+                    <input
+                        type="checkbox"
+                        name="inStock"
+                        id="inStock"
+                        checked={toyToEdit.inStock}
+                        onChange={handleChange}
+                    />
+                </div>
                 <div>
                     <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
                     <Link to="/toy">Cancel</Link>

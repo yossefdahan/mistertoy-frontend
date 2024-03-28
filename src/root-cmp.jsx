@@ -12,6 +12,7 @@ import { ToyEdit } from './pages/ToyEdit.jsx';
 import { ToyIndex } from './pages/ToyIndex.jsx';
 import { AppHeader } from './cmps/AppHeader.jsx';
 import { AppFooter } from './cmps/AppFooter.jsx';
+import { UserDetails } from './pages/UserDetails.jsx';
 // import { Dashboard } from './pages/Dashboard.jsx';
 
 
@@ -34,6 +35,8 @@ export function App() {
               {/* <Route element={<ToyEdit />} path="/toy/edit" /> */}
               <Route element={<ToyEdit />} path="/toy/edit/:toyId?" />
               <Route element={<ToyDetails />} path="/toy/:toyId" />
+
+              <Route element={<UserDetails />} path="/user/:userId" />
             </Routes>
           </main>
           <AppFooter />

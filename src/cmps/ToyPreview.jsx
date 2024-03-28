@@ -12,8 +12,8 @@ export function ToyPreview({ toy }) {
             <img src={`img/${randomImg}.webp`} alt={`${randomImg}`} />
             <p>Price: <span>${toy.price.toLocaleString()}</span></p>
             <p>Status: <span>{toy.inStock ? "In Stock" : "Out of Stock"}</span></p>
-            <Link to={`/toy/edit/${toy._id}`}>Edit</Link> &nbsp; | &nbsp;
-            <Link to={`/toy/${toy._id}`}>Details</Link>
+            <Link className="edit-toy-btn" to={`/toy/edit/${toy._id}`}>Edit</Link>
+            <Link className="details-btn" to={`/toy/${toy._id}`}>Details</Link>
         </article>
     )
 }

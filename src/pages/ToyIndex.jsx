@@ -75,7 +75,7 @@ export function ToyIndex() {
 
     return (
         <div>
-
+            {/* <img className='img-background' src="img/room.webp" alt="" /> */}
             <main className='main-container flex'>
                 <div className='filter-sort-edit-container'>
                     <div className='add-container full main-layout flex'>
@@ -88,9 +88,7 @@ export function ToyIndex() {
                         <ToySort onSetSort={onSetSort} sortBy={sortBy} />
                     </div>
                 </div>
-                <div className='chart-container'>
-                    <MyChart toys={toys} />
-                </div>
+
                 {!isLoading
                     ? <ToyList
                         toys={toys}
@@ -99,7 +97,9 @@ export function ToyIndex() {
                     />
                     : <div>Loading...</div>
                 }
-
+                <div className='chart-container'>
+                    <MyChart toys={toys} />
+                </div>
             </main>
         </div>
     )

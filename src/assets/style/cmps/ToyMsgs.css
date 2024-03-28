@@ -1,0 +1,31 @@
+.toy-msgs-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.toy-msgs-container input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toy-msgs-container button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.toy-msgs-container button:hover {
+    background-color: #0056b3;
+}
