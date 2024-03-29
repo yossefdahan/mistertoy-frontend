@@ -23,4 +23,9 @@
     top: -17px;
     right: -15px;
     border-radius: 15px;
+    opacity: 0;
+}
+
+.toy-preview:hover .remove-btn {
+    opacity: 1;
 }

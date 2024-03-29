@@ -8,12 +8,14 @@ export function ToyPreview({ toy }) {
     return (
         <article className="toy-container">
 
-            <h4>{toy.name}</h4>
             <img src={`img/${randomImg}.webp`} alt={`${randomImg}`} />
-            <p>Price: <span>${toy.price.toLocaleString()}</span></p>
-            <p>Status: <span>{toy.inStock ? "In Stock" : "Out of Stock"}</span></p>
-            <Link className="edit-toy-btn" to={`/toy/edit/${toy._id}`}>Edit</Link>
-            <Link className="details-btn" to={`/toy/${toy._id}`}>Details</Link>
+            <div>
+                <h2>{toy.name}</h2>
+                <h3>Price: <span>${toy.price.toLocaleString()}</span></h3>
+                <p>Status:<span className={toy.inStock ? 'in-stock' : 'out-of-stock'}>{toy.inStock ? 'In Stock' : 'Out of Stock'}</span></p>
+                <Link className="edit-toy-btn" to={`/toy/edit/${toy._id}`}>Edit</Link>
+                <Link className="details-btn" to={`/toy/${toy._id}`}>Details</Link>
+            </div>
         </article>
     )
 }

@@ -75,10 +75,12 @@
 }
 
 .back-btn-details:hover {
+
     opacity: 0.6;
 }
 
 .link-btn-edit:hover {
+
     opacity: 0.7;
 }
 

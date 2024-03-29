@@ -9,7 +9,7 @@ export function UserDetails() {
     const [user, setUser] = useState(null)
     const { userId } = useParams()
     const navigate = useNavigate()
-    console.log(userId);
+
     useEffect(() => {
         if (userId) loadUser()
     }, [userId])

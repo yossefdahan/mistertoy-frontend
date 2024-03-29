@@ -4,6 +4,8 @@
     border-radius: 8px;
 } */
 
+
+
 .filter-sort-container {
     align-items: center;
     background-color: rgba(211, 211, 211, 0.185);
@@ -24,4 +26,22 @@
 .toy-sort .desc-label {
     margin: 8px;
     font-size: 1.1em;
+}
+
+.add-btn {
+    background-color: white;
+    border: 0.1px black solid;
+}
+
+.add-link {
+    background-color: white;
+    border: 0.1px black solid;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.add-link:hover {
+    background-color: var(--clr1);
+    color: white;
+    transition: .3s;
 }

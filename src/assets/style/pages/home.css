@@ -3,7 +3,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* height: 50vh; */
+
     width: 40%;
 
 }
@@ -12,6 +12,6 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    height: 80vh;
+    height: 50vh;
     margin: 0 auto
 }

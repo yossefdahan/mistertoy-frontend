@@ -3,6 +3,8 @@ import { UserMsg } from '../pages/UserMsg'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../store/actions/user.actions'
 import { LoginSignup } from './LoginSignup'
+import { useState } from 'react'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 
 
@@ -11,7 +13,8 @@ export function AppHeader() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
-
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const toggleModal = () => setIsModalOpen(!isModalOpen)
     function onLogout() {
         logout()
             .then(() => {
@@ -24,29 +27,41 @@ export function AppHeader() {
     }
 
     return (
-        <header className="app-header full main-layout">
-            <section className="header-container">
-                <img className='logo-img' src="img/logo.jpg" alt="" />
-                <nav className="app-nav">
-                    <NavLink to="/" >Home</NavLink>
-                    <NavLink to="/about" >About</NavLink>
-                    <NavLink to="/toy" >Toys</NavLink>
-                    {user && <NavLink to={`/user/${user._id}`} >My details</NavLink>}
-                    {/* <NavLink to="/dash">Dashboard</NavLink> */}
+        <header className="app-header">
+            <section className="header-container full main-layout">
+                <img className='logo-img' src="img/logo.jpg" alt="" onClick={() => navigate('/toy')} />
+                <div className='navs-user'>
+                    <nav className="app-nav">
+                        <NavLink to="/" >Home</NavLink>
+                        <NavLink to="/about" >About</NavLink>
+                        <NavLink to="/toy" >Toys</NavLink>
+                        {/* {user && <NavLink to={`/user/${user._id}`} >My details</NavLink>} */}
+                        {/* <NavLink to="/dash">Dashboard</NavLink> */}
 
-                </nav>
+                    </nav>
+                    <div className="menu-right">
+                        {user ? (
+                            <>
+                                <span className='user-name-span' onClick={() => navigate(`/user/${user._id}`)}>Hello {user.fullname}</span>
+                                <button className='logout-btn' onClick={onLogout}>Logout</button>
+                            </>
+                        ) : (
+                            <button className="login-ham-btn" onClick={toggleModal}>
+                                ☰ Login
+                            </button>
+                        )}
+                        {isModalOpen && <LoginSignup onClose={toggleModal} />}
+                    </div>
+                </div>
+
+
             </section>
-            {user ? (
-                < section >
 
-                    <span to={`/user/${user._id}`}>Hello {user.fullname} </span>
-                    <button onClick={onLogout}>Logout</button>
-                </ section >
-            ) : (
-                <section>
-                    <LoginSignup />
-                </section>
-            )}
+
+
+
+
+
             <UserMsg />
         </header>)
 }

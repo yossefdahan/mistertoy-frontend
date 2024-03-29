@@ -40,7 +40,7 @@ export function ToySort({ onSetSort, sortBy }) {
             />
 
             <label className="desc-label">
-                Descending:
+                Desc:
                 <input type="checkbox"
                     name="dir"
                     value={!sortByToEdit.dir === -1}

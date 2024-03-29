@@ -44,10 +44,11 @@ export function ToyDetails() {
                 <div>
                     {toy.msgs.map((msg) => (
                         <pre key={msg.id} className="message">
-                            <p>Msg id: {msg.id}</p>
-                            <p>Msg: {msg.txt}</p>
-                            <p>Msg user id: {msg.by._id}</p>
-                            <p>Msg user name: {msg.by.fullname}</p>
+                            {/* <p>Msg id: {msg.id}</p> */}
+                            <h4> Added by : <span> {msg.by.fullname}</span></h4>
+                            <h3>Message: {msg.txt}</h3>
+                            {/* <p></p> */}
+                            {/* <p>Msg user id: {msg.by._id}</p> */}
                         </pre>
 
                     ))}
