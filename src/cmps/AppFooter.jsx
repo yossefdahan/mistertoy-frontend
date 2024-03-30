@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 export function AppFooter() {
@@ -12,7 +12,7 @@ export function AppFooter() {
                 <nav className="footer-nav">
                     <Link to="/">Home</Link>
                     <Link to="/about">About</Link>
-                    {/* <Link to="/contact">Contact</Link> */}
+                    <Link to="/dash">Statistic</Link>
                 </nav>
                 <h3>Yossef 🧸 Dahan</h3>
 

@@ -15,7 +15,8 @@ export const toyService = {
     getDefaultSort,
     getLabels,
     saveMsg,
-    getEmptyMsg
+    getEmptyMsg,
+    removeMsg
 }
 
 const labels = ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Battery Powered"]
@@ -53,6 +54,11 @@ function saveMsg(toyId, msg) {
     return httpService.post(url, msg)
 }
 
+function removeMsg(toyId, msgId) {
+    const url = `${BASE_URL}/${toyId}/msg/${msgId}`
+    return httpService.delete(url, msgId)
+}
+
 function getEmptyMsg() {
     return {
         msgs: [
@@ -68,6 +74,7 @@ function getDefaultFilter() {
         txt: '',
         inStock: '',
         labels: [],
+
     }
 }
 
@@ -79,7 +86,7 @@ function getEmptyToy() {
     return {
         name: '',
         price: 0,
-        labels: [],
+        labels: [] || utilService.getRandomLabels(3),
         createdAt: Date.now(),
         inStock: false,
         msgs: []

@@ -36,9 +36,7 @@
 .toy-container h3,
 .toy-container h4 {
     margin: 5px;
-    /* Spacing between text elements */
     text-align: center;
-    /* Center the text */
 }
 
 .edit-toy-btn {

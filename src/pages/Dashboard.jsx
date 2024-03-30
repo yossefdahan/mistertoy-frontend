@@ -36,34 +36,34 @@ export function Dashboard() {
         }],
     })
 
-
-
     useEffect(() => {
         loadToys()
-            .catch(err => {
-                showErrorMsg('Cannot load toys!')
-            })
-        const labelCounts = toys.reduce((acc, toy) => {
-            // if (toy.inStock) {
-            toy.labels.forEach(label => {
-                acc[label] = (acc[label] || 0) + 1
+    }, [])
 
+    useEffect(() => {
+
+        const labelCounts = toys.reduce((acc, toy) => {
+
+            toy.labels.forEach(label => {
+                acc[label] = (acc[label] || 0) + 1;
             })
-            // }
+
             return acc
         }, {})
 
         const totalInStock = Object.values(labelCounts).reduce((sum, count) => sum + count, 0)
         const percentages = Object.values(labelCounts).map(count => (count / totalInStock) * 100)
 
-        setChartData({
+        setChartData(prevChartData => ({
+            ...prevChartData,
             labels: Object.keys(labelCounts),
             datasets: [{
-                ...chartData.datasets[0],
+                ...prevChartData.datasets[0],
                 data: percentages,
             }],
-        })
+        }))
     }, [toys])
+
 
     const options = {
         animation: {

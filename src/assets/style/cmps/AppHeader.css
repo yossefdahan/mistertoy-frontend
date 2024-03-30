@@ -21,6 +21,9 @@
     gap: 3em;
 }
 
+
+
+
 .app-nav {
     display: flex;
     gap: 2em;
@@ -84,6 +87,16 @@
     text-decoration: underline;
 }
 
+.hamburger-menu {
+    display: none;
+}
+
+/* .menu-backdrop {
+    display: none;
+} */
+
+
+
 /* _______________________________________loginBtn______________________________ */
 .login-ham-btn {
     padding: 10px 20px;
@@ -121,23 +134,3 @@
 
 
 /* _____________________________________________________________________ */
-
-
-
-
-
-
-
-/* @media(max-width: 720px) {
-    .app-header {
-        color: var(--clr2bg);
-    }
-
-    .app-header .header-container {
-        flex-direction: column;
-    }
-
-    .app-nav {
-        flex-direction: column;
-    }
-} */

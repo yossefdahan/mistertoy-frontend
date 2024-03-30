@@ -13,7 +13,7 @@ import { ToyIndex } from './pages/ToyIndex.jsx';
 import { AppHeader } from './cmps/AppHeader.jsx';
 import { AppFooter } from './cmps/AppFooter.jsx';
 import { UserDetails } from './pages/UserDetails.jsx';
-// import { Dashboard } from './pages/Dashboard.jsx';
+import { Dashboard } from './pages/Dashboard.jsx';
 
 
 
@@ -30,7 +30,7 @@ export function App() {
               <Route element={<HomePage />} path="/" />
               <Route element={<AboutUs />} path="/about" />
               <Route element={<ToyIndex />} path="/toy" />
-              {/* <Route element={<Dashboard />} path="/dash" /> */}
+              <Route element={<Dashboard />} path="/dash" />
 
               {/* <Route element={<ToyEdit />} path="/toy/edit" /> */}
               <Route element={<ToyEdit />} path="/toy/edit/:toyId?" />

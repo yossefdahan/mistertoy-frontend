@@ -24,7 +24,8 @@ export function ToyMsgs({ toy, onMessageSaved }) {
     }
 
     return <div className="toy-msgs-container">
-        <input type="text" placeholder="Type your message here..." value={msg} onChange={handleChange} />
+        {/* <input type="text" placeholder="Type your message here..." value={msg} onChange={handleChange} /> */}
+        <textarea type="text" placeholder="Type your message here..." value={msg} onChange={handleChange} />
         <button onClick={onSaveMsg}>Save message</button>
 
     </div>

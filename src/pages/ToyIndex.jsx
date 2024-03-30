@@ -88,7 +88,9 @@ export function ToyIndex() {
                         <ToySort onSetSort={onSetSort} sortBy={sortBy} />
                     </div>
                 </div>
-
+                {/* <section className="pagination">
+                    <Paginations />
+                </section> */}
                 {!isLoading
                     ? <ToyList
                         toys={toys}
@@ -97,9 +99,9 @@ export function ToyIndex() {
                     />
                     : <div>Loading...</div>
                 }
-                <div className='chart-container'>
+                {/* <div className='chart-container'>
                     <MyChart toys={toys} />
-                </div>
+                </div> */}
             </main>
         </div>
     )

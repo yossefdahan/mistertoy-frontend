@@ -5,7 +5,7 @@
     margin: 20px 0;
 }
 
-.toy-msgs-container input[type="text"] {
+.toy-msgs-container textarea {
     flex-grow: 1;
     padding: 10px;
     border: 2px solid #007bff;

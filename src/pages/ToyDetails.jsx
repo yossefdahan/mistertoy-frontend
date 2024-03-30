@@ -27,6 +27,16 @@ export function ToyDetails() {
         loadToy()
     }
 
+    async function onRemoveMsg(toyId, msgId) {
+        try {
+            toyService.removeMsg(toyId, msgId)
+            onMessageSaved()
+
+        } catch (err) {
+            console.error('Failed to remove message', err)
+        }
+    }
+
     if (!toy) return <div>Loading..</div>
     return (
         <section className="messages-container toy-details-container">
@@ -43,13 +53,14 @@ export function ToyDetails() {
             {toy.msgs && (
                 <div>
                     {toy.msgs.map((msg) => (
-                        <pre key={msg.id} className="message">
+                        <article key={msg.id} className="message">
                             {/* <p>Msg id: {msg.id}</p> */}
                             <h4> Added by : <span> {msg.by.fullname}</span></h4>
-                            <h3>Message: {msg.txt}</h3>
-                            {/* <p></p> */}
+                            <pre>Message: {msg.txt}</pre>
+
                             {/* <p>Msg user id: {msg.by._id}</p> */}
-                        </pre>
+                            <button onClick={() => onRemoveMsg(toy._id, msg.id)}>Remove</button>
+                        </article>
 
                     ))}
                 </div>

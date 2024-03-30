@@ -15,6 +15,9 @@ export function AppHeader() {
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const toggleModal = () => setIsModalOpen(!isModalOpen)
+    const [isMenuOpen, setIsMenuOpen] = useState(true)
+
+
     function onLogout() {
         logout()
             .then(() => {
@@ -30,29 +33,35 @@ export function AppHeader() {
         <header className="app-header">
             <section className="header-container full main-layout">
                 <img className='logo-img' src="img/logo.jpg" alt="" onClick={() => navigate('/toy')} />
-                <div className='navs-user'>
-                    <nav className="app-nav">
-                        <NavLink to="/" >Home</NavLink>
-                        <NavLink to="/about" >About</NavLink>
-                        <NavLink to="/toy" >Toys</NavLink>
-                        {/* {user && <NavLink to={`/user/${user._id}`} >My details</NavLink>} */}
-                        {/* <NavLink to="/dash">Dashboard</NavLink> */}
+                <button className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>☰</button>
+                {isMenuOpen && (
+                    <div className="menu-backdrop" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                        <div className='navs-user' onClick={e => e.stopPropagation()}>
+                            <nav className="app-nav">
+                                <NavLink to="/" >Home</NavLink>
+                                <NavLink to="/about" >About</NavLink>
+                                <NavLink to="/toy" >Toys</NavLink>
+                                {/* {user && <NavLink to={`/user/${user._id}`} >My details</NavLink>} */}
 
-                    </nav>
-                    <div className="menu-right">
-                        {user ? (
-                            <>
-                                <span className='user-name-span' onClick={() => navigate(`/user/${user._id}`)}>Hello {user.fullname}</span>
-                                <button className='logout-btn' onClick={onLogout}>Logout</button>
-                            </>
-                        ) : (
-                            <button className="login-ham-btn" onClick={toggleModal}>
-                                ☰ Login
-                            </button>
-                        )}
-                        {isModalOpen && <LoginSignup onClose={toggleModal} />}
+
+                            </nav>
+                            <div className="menu-right">
+                                {user ? (
+                                    <>
+                                        <span className='user-name-span' onClick={() => navigate(`/user/${user._id}`)}>Hello {user.fullname}</span>
+                                        <button className='logout-btn' onClick={onLogout}>Logout</button>
+                                    </>
+                                ) : (
+                                    <button className="login-ham-btn" onClick={toggleModal}>
+                                        ☰ Login
+                                    </button>
+                                )}
+                                {isModalOpen && <LoginSignup onClose={toggleModal} />}
+                            </div>
+                        </div>
                     </div>
-                </div>
+                )}
+
 
 
             </section>
