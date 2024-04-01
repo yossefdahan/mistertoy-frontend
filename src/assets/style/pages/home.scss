@@ -1,0 +1,27 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 50vh;
+    margin: 0 auto;
+
+    & .bck-img {
+        background-image: url('/img/bck2.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        width: 40%;
+
+    }
+}
+
+// &.bck-img {
+//     background-image: url('/img/bck2.webp');
+//     background-size: cover;
+//     background-position: center;
+//     background-repeat: no-repeat;
+
+//     width: 40%;
+
+// }

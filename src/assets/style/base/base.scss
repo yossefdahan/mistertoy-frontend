@@ -6,7 +6,7 @@
 
 body {
     margin: 0;
-    color: var(--gray3);
+    color: $gray3;
 }
 
 h1,
@@ -43,7 +43,7 @@ object {
 
 /* Simple and useful CSS Debugging Technique */
 .debug * {
-    outline: 1px solid gold
+    outline: em(1px) solid gold
 }
 
 a.active {

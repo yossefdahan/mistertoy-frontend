@@ -1,0 +1,42 @@
+.user-details {
+    max-width: em(800px);
+    margin: 40px auto;
+    padding: 20px;
+    background-color: $gray1;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px $shadow-light;
+
+    h1 {
+        color: $clr4;
+        font-size: em(24px);
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        color: darken($black1, 20%);
+        font-size: em(20px);
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: lighten($black1, 20%);
+        line-height: 1.6;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    a {
+        display: inline-block;
+        background-color: $clr3;
+        color: $clr8;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.2s ease-in-out;
+
+        &:hover {
+            background-color: $clr4;
+        }
+    }
+}

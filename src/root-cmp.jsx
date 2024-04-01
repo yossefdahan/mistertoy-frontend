@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-import '../src/assets/style/main.css'
+import '../src/assets/style/main.scss'
 
 
 import { HomePage } from './pages/HomePage.jsx';

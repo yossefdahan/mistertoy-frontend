@@ -27,9 +27,7 @@ function getLabels() {
 }
 
 function query(filterBy, sortBy) {
-
     return httpService.get(BASE_URL, { params: { filterBy, sortBy } })
-
 }
 
 function getById(toyId) {
@@ -41,7 +39,6 @@ function remove(toyId) {
 }
 
 function save(toy) {
-
     if (toy._id) {
         return httpService.put(BASE_URL + toy._Id, toy)
     } else {

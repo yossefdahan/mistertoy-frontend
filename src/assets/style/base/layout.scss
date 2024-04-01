@@ -5,17 +5,15 @@
 
 }
 
-
-
 .container {
-    max-width: 800px;
+    max-width: em(800px);
     padding: 1em;
     margin: auto;
 }
 
 footer {
-    background-color: var(--clr1);
-    color: var(--clr1);
+    background-color: $clr1;
+    color: $clr1;
     padding: 1em;
     text-align: center;
 }

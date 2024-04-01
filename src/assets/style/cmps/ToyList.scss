@@ -6,24 +6,25 @@
     margin-block: 0.6em;
     flex-wrap: wrap;
     justify-content: space-evenly;
-}
 
-.toy-list li {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: var(--clr1);
-    padding: 0.65em;
+    & .toy-list li {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-color: $clr1;
+        padding: 0.65em;
+    }
 }
 
 .remove-btn {
     position: absolute;
-    background-color: aliceblue;
+    background-color: $clr8;
     top: -17px;
     right: -15px;
     border-radius: 15px;
     opacity: 0;
+    transition: opacity 0.3s;
 }
 
 .toy-preview:hover .remove-btn {

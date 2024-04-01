@@ -1,0 +1,79 @@
+.toy-edit {
+    max-width: em(600px);
+    margin: auto;
+    padding: 20px;
+    background-color: $gray2;
+    box-shadow: 0 4px 6px $shadow-light;
+    border-radius: 8px;
+
+    h2 {
+        text-align: center;
+        color: $clr4;
+    }
+
+    form {
+        display: grid;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: $black1;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="checkbox"]+span {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid $clr7;
+        border-radius: 4px;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 5px;
+    }
+
+    input[type="checkbox"]+span {
+        vertical-align: middle;
+    }
+
+    div>label {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 10px;
+    }
+
+    button {
+        background-color: $clr3;
+        color: $clr8;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: em(16px);
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: $clr4;
+        }
+    }
+
+    a {
+        display: inline-block;
+        margin-left: 15px;
+        color: $clr3;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: $clr4;
+        }
+    }
+}

@@ -1,0 +1,70 @@
+.toy-preview {
+    display: flex;
+    flex-direction: column;
+    padding: 0.3em;
+    text-align: center;
+    position: relative;
+
+    h4 {
+        text-transform: capitalize;
+        color: $black1;
+    }
+}
+
+.toy-container {
+    border-radius: 15px;
+    padding: 1em;
+    min-width: 250px;
+    box-shadow: 0 4px 6px $shadow-light;
+    max-width: 250px;
+
+    img {
+        height: em(200px);
+        max-width: 100%;
+    }
+
+    h2,
+    h3,
+    h4 {
+        margin: 5px;
+        text-align: center;
+    }
+
+    p {
+        color: $text-color;
+        font-size: em(14px);
+        line-height: 1.6;
+        margin-bottom: 10px;
+
+        span {
+            display: inline-block;
+            padding: 4px 8px;
+            background-color: $background-light;
+            border-radius: 15px;
+            font-size: em(12px);
+            margin-right: 5px;
+        }
+    }
+
+    .edit-toy-btn,
+    .details-btn {
+        padding: 5px;
+        background-color: $clr8;
+        border: 0.1px solid $black1;
+        border-radius: 8px;
+        margin-right: 1em;
+        opacity: 0;
+
+        &:hover {
+            background-color: $clr1;
+        }
+    }
+
+    &:hover {
+
+        .details-btn,
+        .edit-toy-btn {
+            opacity: 1;
+        }
+    }
+}
