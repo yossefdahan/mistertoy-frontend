@@ -85,6 +85,7 @@ function getEmptyToy() {
         price: 0,
         labels: [] || utilService.getRandomLabels(3),
         createdAt: Date.now(),
+        imgUrl: '' || "https://res.cloudinary.com/dwnsdqibh/image/upload/v1711999599/o7hep230lcdjqmekfvyt.webp",
         inStock: false,
         msgs: []
     }
@@ -97,6 +98,7 @@ function getRandomToy() {
         labels: utilService.getRandomLabels(3),
         createdAt: Date.now(),
         inStock: Math.random() < 0.5,
+        imgUrl: '' || "https://res.cloudinary.com/dwnsdqibh/image/upload/v1711999599/o7hep230lcdjqmekfvyt.webp",
         // msgs: [
         //     {
         //         id: 'm101',

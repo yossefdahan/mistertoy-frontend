@@ -8,7 +8,7 @@ export function ToyPreview({ toy }) {
     return (
         <article className="toy-container">
 
-            <img src={`img/${randomImg}.webp`} alt={`${randomImg}`} />
+            <img src={toy.imgUrl} alt={`${randomImg}`} />
             <div>
                 <h2>{toy.name}</h2>
                 <h3>Price: <span>${toy.price.toLocaleString()}</span></h3>

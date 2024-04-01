@@ -12,9 +12,15 @@ export const userService = {
   getById,
   getLoggedinUser,
   // updateScore,
-  getEmptyCredentials
+  getEmptyCredentials,
+  getUsers,
+  saveLocalUser
 }
 
+function getUsers() {
+  // return storageService.query('user')
+  return httpService.get(BASE_URL + `user`)
+}
 
 function login({ username, password }) {
 
@@ -77,6 +83,11 @@ function getEmptyCredentials() {
   }
 }
 
+function saveLocalUser(user) {
+  user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, isAdmin: user.isAdmin }
+  sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
+  return user
+}
 // Test Data
 // userService.signup({username: 'bobo', password: 'bobo', fullname: 'Bobo McPopo'})
 // userService.login({username: 'bobo', password: 'bobo'})

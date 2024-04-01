@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { UserMsg } from '../pages/UserMsg'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../store/actions/user.actions'
+import { logout, loadUser } from '../store/actions/user.actions'
 import { LoginSignup } from './LoginSignup'
 import { useState } from 'react'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
@@ -12,10 +12,11 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 export function AppHeader() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const user = useSelector(storeState => storeState.userModule.loggedInUser)
+    const user = useSelector(storeState => storeState.userModule.user)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const toggleModal = () => setIsModalOpen(!isModalOpen)
     const [isMenuOpen, setIsMenuOpen] = useState(true)
+
 
 
     function onLogout() {
@@ -41,6 +42,7 @@ export function AppHeader() {
                                 <NavLink to="/" >Home</NavLink>
                                 <NavLink to="/about" >About</NavLink>
                                 <NavLink to="/toy" >Toys</NavLink>
+
                                 {/* {user && <NavLink to={`/user/${user._id}`} >My details</NavLink>} */}
 
 

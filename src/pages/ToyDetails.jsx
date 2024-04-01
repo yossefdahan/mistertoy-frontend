@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, NavLink, useNavigate, useParams } from "react-router-dom"
 import { toyService } from "../services/toy.service"
 import { ToyMsgs } from "../cmps/ToyMsgs"
+import { useSelector } from "react-redux"
+import { loadReviews } from "../store/actions/review.actions"
 
 
 
 export function ToyDetails() {
-
+    const reviews = useSelector(storeState => storeState.reviewModule.reviews)
     const [toy, setToys] = useState(null)
     const { toyId } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
-        if (toyId) loadToy()
+        if (toyId) {
+            loadToy()
+            loadReviews()
+        }
     }, [toyId])
-
+    console.log(reviews);
     function loadToy() {
         toyService.getById(toyId)
             .then(toy => setToys(toy))
@@ -37,6 +43,8 @@ export function ToyDetails() {
         }
     }
 
+    const filteredReviews = reviews.filter(review => review.toy._id === toyId)
+    console.log(filteredReviews);
     if (!toy) return <div>Loading..</div>
     return (
         <section className="messages-container toy-details-container">
@@ -48,7 +56,6 @@ export function ToyDetails() {
 
             <Link className="link-btn-edit" to={`/toy/edit/${toy._id}`}>Edit</Link> &nbsp;
             <Link className="back-btn-details" to={`/toy`}>Back</Link>
-
             <ToyMsgs toy={toy} onMessageSaved={onMessageSaved} />
             {toy.msgs && (
                 <div>
@@ -62,6 +69,17 @@ export function ToyDetails() {
                             <button onClick={() => onRemoveMsg(toy._id, msg.id)}>Remove</button>
                         </article>
 
+                    ))}
+                </div>
+            )}
+            <NavLink to="/review" >review</NavLink>
+            {filteredReviews && (
+                <div>
+                    {filteredReviews.map((review) => (
+                        <article key={review._id} className="message">
+                            <h4>Added by: <span>{review.byUser.fullname}</span></h4>
+                            <pre>Review: {review.txt}</pre>
+                        </article>
                     ))}
                 </div>
             )}

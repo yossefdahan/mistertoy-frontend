@@ -14,6 +14,7 @@ import { AppHeader } from './cmps/AppHeader.jsx';
 import { AppFooter } from './cmps/AppFooter.jsx';
 import { UserDetails } from './pages/UserDetails.jsx';
 import { Dashboard } from './pages/Dashboard.jsx';
+import { ReviewIndex } from './pages/ReviewIndex.jsx';
 
 
 
@@ -31,7 +32,7 @@ export function App() {
               <Route element={<AboutUs />} path="/about" />
               <Route element={<ToyIndex />} path="/toy" />
               <Route element={<Dashboard />} path="/dash" />
-
+              <Route element={<ReviewIndex />} path="/review" />
               {/* <Route element={<ToyEdit />} path="/toy/edit" /> */}
               <Route element={<ToyEdit />} path="/toy/edit/:toyId?" />
               <Route element={<ToyDetails />} path="/toy/:toyId" />

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { userService } from "../services/user.service.js"
+import { ImgUploader } from "./ImgUploader.jsx"
 
 
 export function LoginForm({ onLogin, isSignup, onClose }) {
@@ -15,6 +16,10 @@ export function LoginForm({ onLogin, isSignup, onClose }) {
         ev.preventDefault()
         onLogin(credentials)
         onClose()
+    }
+
+    function onUploaded(imgUrl) {
+        setCredentials({ ...credentials, imgUrl })
     }
 
     return (
@@ -45,7 +50,9 @@ export function LoginForm({ onLogin, isSignup, onClose }) {
                 onChange={handleChange}
                 required
             />}
+
             <button>{isSignup ? 'Signup' : 'Login'}</button>
         </form>
+
     )
 }

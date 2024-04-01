@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import { toyService } from "../services/toy.service.js"
 import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 import { saveToy } from "../store/actions/toy.action.js"
+import { ImgUploader } from "../cmps/ImgUploader.jsx"
 
 
 export function ToyEdit() {
@@ -56,6 +57,11 @@ export function ToyEdit() {
             })
     }
 
+    function onUploaded(imgUrl) {
+        setToyToEdit({ ...toyToEdit, imgUrl })
+
+    }
+
     return (
         <section className="toy-edit">
             <h2>{toyToEdit._id ? 'Edit' : 'Add'} Toy</h2>
@@ -102,11 +108,12 @@ export function ToyEdit() {
                     />
                 </div>
                 <div>
+                    <ImgUploader onUploaded={onUploaded} />
                     <button>{toyToEdit._id ? 'Save' : 'Add'}</button>
+
                     <Link to="/toy">Cancel</Link>
                 </div>
             </form>
         </section>
     )
-
 }

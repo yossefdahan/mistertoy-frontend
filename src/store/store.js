@@ -6,10 +6,12 @@ import {
 
 import { toyReducer } from "./reducers/toy.reducer.js"
 import { userReducer } from "./reducers/user.reducer.js"
+import { reviewReducer } from "./reducers/review.reducer.js"
 
 const rootReducer = combineReducers({
     toyModule: toyReducer,
-    userModule: userReducer
+    userModule: userReducer,
+    reviewModule: reviewReducer,
 })
 
 
