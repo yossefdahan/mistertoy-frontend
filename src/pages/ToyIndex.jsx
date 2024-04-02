@@ -83,7 +83,7 @@ export function ToyIndex() {
                         <button className='add-btn' onClick={onAddToy}>Add random toy </button>
                     </div>
 
-                    <div className='filter-sort-container flex '>
+                    <div className='filter-sort-container'>
                         <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
                         <ToySort onSetSort={onSetSort} sortBy={sortBy} />
                     </div>

@@ -6,12 +6,13 @@ import { userService } from './user.service'
 export const reviewService = {
   add,
   query,
-  remove
+  remove,
+  getEmptyReview
 }
 
 function query(filterBy) {
-  var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
-  return httpService.get(`review${queryStr}`)
+  // var queryStr = (!filterBy) ? '' : `?name=${filterBy.name}&sort=anaAref`
+  return httpService.get(`review`, filterBy)
   // return storageService.query('review')
 }
 
@@ -39,4 +40,10 @@ async function add({ txt, toyId }) {
   // await userService.update(reviewToAdd.byUser)
   // const addedReview = await storageService.post('review', reviewToAdd)
   return addedReview
+}
+
+function getEmptyReview() {
+  return {
+    txt: '',
+  }
 }

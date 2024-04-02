@@ -1,7 +1,23 @@
 .filter-sort-container {
+    display: flex;
     align-items: center;
     background-color: $gray2;
     border-radius: 8px;
+
+    @include for-tablet-down {
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+
+.toy-filter {
+    display: flex;
+
+    @include for-tablet-down {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .toy-sort {
@@ -16,6 +32,13 @@
     .desc-label {
         margin: 8px;
         font-size: 1.1em;
+
+    }
+
+    @include for-tablet-down {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 
